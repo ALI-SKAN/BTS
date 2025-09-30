@@ -1,0 +1,287 @@
+/* ===== Tipografía & Base ===== */
+:root {
+  --bg-1: #0b0d13;
+  --bg-2: #121529;
+  --purple: #a86cff;
+  --purple-2: #7a3cff;
+  --glow: #c39bff;
+  --text: #e9e9f2;
+  --muted: #b7b8c6;
+  --accent: #ffd2ff;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 900px at 70% -10%, #1c1f39, transparent 60%),
+    radial-gradient(1000px 700px at -10% 80%, #1a1130, transparent 55%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  overflow-x: hidden;
+}
+
+.app { max-width: 980px; margin: 0 auto; padding: 24px 18px 80px; }
+.top h1 { margin: .2rem 0 .25rem; font-weight: 800; letter-spacing: .4px; }
+.top h1 span { filter: drop-shadow(0 0 6px var(--glow)); }
+.top .tag { margin: 0; color: var(--muted); font-weight: 400; }
+
+.main { display: grid; gap: 28px; margin-top: 18px; }
+/*EDITAR PARA VENTA*/
+/* ===== Logo BTS ⇄ ARMY ===== */
+.logo-card{
+  position: relative;
+  border: 1px solid #ffffff24;
+  background: linear-gradient(180deg, #10122599, #0b0d1399);
+  outline: none;
+  width: min(400px, 85vw);
+  margin: 8px auto 0;
+  padding: 18px;                 /* ↓ menos padding para maximizar área visible */
+  border-radius: 22px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px #00000050, inset 0 0 0 1px #ffffff10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+/*EDITAR PARA VENTA LO DE ARRIBA LA PARTE DE WIDTH*/
+
+.logo-card:focus-visible { box-shadow: 0 0 0 3px #ffffff40, 0 10px 30px #00000060; }
+.logo-card:hover { transform: translateY(-2px); }
+
+.logo-wrap{
+  --w: min(400px, 92vw);
+  --h: clamp(170px, 28vw, 230px);
+  width: var(--w);
+  height: var(--h);
+  border-radius: 18px;
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0 0 0 1px #ffffff18, 0 0 120px 10px #6f35ff40 inset;
+  overflow: hidden;
+}
+
+/* Slots de medios (fotos o videos) */
+.panel{
+  position:absolute; inset:0; width:50%;
+  overflow:hidden; border-radius:18px;
+}
+.panel.left{ left:0; }
+.panel.right{ right:0; }
+.media{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; display:block;
+}
+/* placeholder si aún no hay medios */
+.media.placeholder{
+  background:
+    radial-gradient(140px 100px at 30% 20%, #7a3cff33, transparent 60%),
+    radial-gradient(170px 120px at 80% 70%, #3dd6ff22, transparent 60%),
+    #141229;
+}
+
+/* Capas de forma (overlay morado) */
+.shape{
+  position:absolute; inset:0;
+  pointer-events:none; border-radius:18px;
+  transition: opacity .6s ease, transform .6s ease;
+}
+.shape::before, .shape::after{
+  content:""; position:absolute; top:0; bottom:0; width:50%;
+  border-radius:18px;
+  /* contorno sutil para “leer” la forma */
+  box-shadow: inset 0 0 0 1px #ffffff22, 0 10px 30px #00000060;
+}
+
+/* === BTS (más fiel): paneles verticales con biseles interiores ===
+   - Bisel superior/interior e inferior/interior
+   - Hueco central definido por los polígonos
+*/
+.shape-bts::before{
+  left:0;
+  /* izquierda: borde interior biselado (8% del ancho, 8% de alto) */
+  clip-path: polygon(
+    10% 0%, 100% 0%, 100% 100%, 10% 100%,
+     3% 85%, 3% 15%
+  );
+  background: linear-gradient(180deg,#2b2148,#1b1430);
+}
+.shape-bts::after{
+  right:0;
+  /* derecha: espejo del bisel interior */
+  clip-path: polygon(
+    0% 0%, 90% 0%, 97% 15%, 97% 85%, 90% 100%, 0% 100%
+  );
+  background: linear-gradient(180deg,#2b2148,#1b1430);
+}
+
+/* === ARMY (cuando alternas) === */
+.shape-army{ opacity:0; transform: rotateY(-16deg) scale(.985); }
+.shape-army::before{
+  left:0;
+  clip-path: polygon(0 0, 85% 0, 70% 20%, 70% 80%, 85% 100%, 0 100%);
+  background: linear-gradient(180deg,#241a3e,#1b1430);
+}
+.shape-army::after{
+  right:0;
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 30% 80%, 30% 20%);
+  background: linear-gradient(180deg,#241a3e,#1b1430);
+}
+
+/* Recorte idéntico para que imagen/video calce al logo */
+.bts-mode .panel.left  .media{
+  clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 10% 100%, 3% 85%, 3% 15%);
+}
+.bts-mode .panel.right .media{
+  clip-path: polygon(0% 0%, 90% 0%, 97% 15%, 97% 85%, 90% 100%, 0% 100%);
+}
+.army-mode .panel.left  .media{
+  clip-path: polygon(0 0, 85% 0, 70% 20%, 70% 80%, 85% 100%, 0 100%);
+}
+.army-mode .panel.right .media{
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 30% 80%, 30% 20%);
+}
+
+/* Transición al cambiar de modo */
+.army-mode .shape-bts{ opacity:0; transform: rotateY(16deg) scale(.985); }
+.army-mode .shape-army{ opacity:1; transform:none; }
+
+/* Oculta la pista para liberar el área del botón */
+.hint{ display:none; }
+
+/* ===== Mensaje principal ===== */
+.message { display:block; text-align:center; padding:8px 6px; }
+.message[hidden]{ display:none; }
+.message h2 { margin:.3rem 0 .4rem; font-size: clamp(1.5rem, 2.8vw, 2.1rem); }
+.message .euphoria{
+  background: linear-gradient(90deg, var(--accent), var(--purple), #77a0ff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 0 22px #a86cff55;
+}
+.message p { margin:0; color:#e5e3f7cc; }
+
+/* ===== Miembros ===== */
+.bias-game { margin-top:10px; }
+.bias-game h3 { margin:.2rem 0 .2rem; }
+.mini-hint { margin:.1rem 0 .8rem; color:var(--muted); }
+
+.members{
+  display:grid; grid-template-columns:repeat(7, minmax(0,1fr));
+  gap:10px; list-style:none; padding:0; margin:0 auto; max-width:740px;
+}
+@media (max-width:720px){ .members{ grid-template-columns:repeat(4, minmax(0,1fr)); } }
+
+.pill{
+  width:100%; aspect-ratio:1/1; border-radius:16px; border:1px solid #ffffff1c;
+  background: linear-gradient(180deg, #1a1730, #141229);
+  color:var(--text); font-weight:700; letter-spacing:.2px;
+  display:grid; place-items:center; text-transform:uppercase;
+  cursor:pointer; outline:none;
+  box-shadow: inset 0 0 0 1px #ffffff0e, 0 8px 16px #00000060;
+  transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+  overflow:hidden; padding:0;
+}
+button.pill img{
+  width:100%; height:100%; object-fit:cover; border-radius:16px; display:block;
+  align-self:stretch; justify-self:stretch;
+}
+.pill:hover{ transform: translateY(-1px); }
+.pill:focus-visible{ box-shadow: 0 0 0 3px #ffffff40; }
+.pill:active{ transform: translateY(0) scale(.98); }
+.pill::after{
+  content:""; position:absolute; inset:-1px; border-radius:16px;
+  background: conic-gradient(from 0deg, transparent 0 300deg, #a86cff 330deg, transparent 360deg);
+  filter: blur(10px); opacity:.42; z-index:-1; transition: opacity .3s ease;
+}
+.pill:hover::after{ opacity:.8; }
+
+.bias-result{
+  min-height:44px; margin-top:10px; font-weight:600; text-align:center;
+  color:#efe4ff; filter:drop-shadow(0 1px 0 #000);
+}
+
+/* ===== Footer ===== */
+.foot{ margin-top:12px; color:var(--muted); text-align:center; }
+.foot code{ color:#d8cafb; }
+
+/* Overlay morado arriba del contenido por defecto (desaparece al abrir) */
+.logo-wrap .shape{ opacity:1; z-index:3; }
+.logo-wrap .panel{ z-index:2; }
+.logo-card.opened .shape{ opacity:0; pointer-events:none; }
+
+
+/* Ajuste del botón para maximizar el área visible */
+.logo-card { padding: 0px; }
+/*EDITAR PARA VENTA*/
+/* Contenedor de la media */
+.logo-stage{
+  width: min(400px, 95vw);
+  height: clamp(120px, 20vw, 250px);
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px #ffffff18, 0 0 12px 10px #6f35ff25;
+}
+/*SOLO LO DE ARRIBA MAS QUE NADA EL HEIGHT Y WIDHT*/
+/*EDITAR PARA VENTA*/
+/* La media (imagen o video) ocupa todo y se recorta bien */
+.logo-stage .media{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;  
+  border-radius: 0px;
+}
+/*SOLO LO DE ARRIBA MAS QUE NADA EL OBJECT-FIT*/
+
+/* Capa morada con forma del logo BTS que tapa al inicio */
+/* BLOQUE ÚNICO que tapa al inicio y se desvanece al abrir */
+.bts-mask{
+  position: absolute; inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  opacity: 1;                     /* tapa la media al inicio */
+  transition: opacity .6s ease;
+  /* relleno + brillo sutil tipo BTS */
+  background: linear-gradient(180deg,#2b2148,#1b1430);
+  box-shadow:
+    inset 0 0 0 1px #ffffff22,    /* borde interior */
+    0 12px 36px #00000080;        /* sombra exterior suave */
+}
+
+/* Dos mitades del logo con bisel interior (usando ::before y ::after) */
+.bts-mask::before,
+.bts-mask::after{
+  content: "";
+  position: absolute; top: 0; bottom: 0; width: 50%;
+  border-radius: 0px;
+  box-shadow: inset 0 0 0 1px #ffffff22, 0 10px 30px #00000060;
+}
+
+/* Mitad izquierda (bisel interior) */
+.bts-mask::before{
+  left: 0;
+  background: linear-gradient(180deg,#2b2148,#1b1430);
+
+}
+
+/* Mitad derecha (bisel interior espejo) */
+.bts-mask::after{
+  right: 0;
+  background: linear-gradient(180deg,#2b2148,#1b1430);
+
+}
+
+/* Al abrir (clic): la máscara se desvanece y deja ver la imagen/video */
+.logo-card.opened .bts-mask{
+  opacity: 0;
+}
+.logo-stage .media{ clip-path: none !important; }
+
+
+
+
+

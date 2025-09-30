@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BTS 💜</title>
+    <meta
+      name="description"
+      content="Interacción romántica estilo BTS: abre las alas y elige tu bias para revelar mensajes de amor."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header align="center" class="top">
+        <h1 >Abre las alas <span>💜</span></h1>
+        <p class="tag">
+          "Ámate a ti mismo, habla por ti mismo." Love Yourself, Speak Yourself
+        </p>
+      </header>
+
+      <main class="main">
+        <!-- Logo BTS ⇄ ARMY (con slots para fotos/videos) -->
+        <!-- Logo BTS/ARMY -->
+        <!-- Botón: una sola imagen/video + máscara BTS encima -->
+        <button
+          class="logo-card"
+          id="logoCard"
+          aria-label="Haz clic para abrir las alas"
+        >
+          <div class="logo-stage">
+            <!-- ⬇️ PON AQUÍ UNA SOLA IMAGEN O VIDEO -->
+            <video class="media" src="img/EDITABLE/BTS.mp4" autoplay muted loop playsinline></video>
+            <!-- o
+    <video class="media" src="assets/video/tu-video.mp4" autoplay muted loop playsinline></video>
+    -->
+            <!-- Máscara con la silueta del logo BTS (capa morada que se desvanece) -->
+            <div class="bts-mask" aria-hidden="true"></div>
+          </div>
+        </button>
+
+        <!-- Mensaje principal oculto -->
+        <section id="loveMessage" class="message" hidden>
+          <h2>Eres mi <span class="euphoria">Euphoria</span> personal</h2>
+          <p>
+            Desde el primer día que mis ojos te encontraron, supe que eras la
+            melodía que le faltaba a mi canción. Eres mi Euforia, el rayo de sol
+            que atraviesa cada momento nublado y el color que tiñe de morado mi
+            universo, como un atardecer eterno de sueños compartidos. Contigo,
+            cada día es un Filter perfecto donde solo existe la versión más pura
+            y brillante de mí mismo. Tu risa es mi refugio, tu mirada, mi
+            constelación favorita, y tu presencia lo llena todo, haciendo que mi
+            corazón baile al ritmo de una Daechwita personal, fuerte y sin
+            miedo. No hay mapa ni brújula que necesite, porque mi destino
+            siempre estará junto al tuyo. Eres mi persona, mi Worldwide
+            Handsome, la razón por la que el amor se siente como magia. I Purple
+            You. [EDITABLE]💜
+          </p>
+        </section>
+
+        <!-- Mini juego: Who's Your Bias? -->
+        <section class="bias-game" aria-labelledby="biasTitle">
+          <h3 id="biasTitle">Quien es tu Bias? 💜</h3>
+          <p class="mini-hint">Toca un miembro y te digo algo bonito.</p>
+          <ul class="members" id="members" role="list">
+            <!-- Se generan también desde JS por accesibilidad; dejamos fallback estático -->
+            <li>
+              <button data-name="RM" class="pill" aria-label="RM">
+                <img src="img/RM/RM.jpg" alt="" />
+              </button>
+            </li>
+            <li>
+              <button data-name="Jin" class="pill" aria-label="Jin">
+                <img src="img/JIN/JIN.jpg" alt="" />
+              </button>
+            </li>
+            <li>
+              <button data-name="Suga" class="pill" aria-label="Suga">
+                <img src="img/SUGA/SUGA.jpg" alt="" />
+              </button>
+            </li>
+            <li>
+              <button data-name="J-Hope" class="pill" aria-label="J-Hope">
+                <img src="img/JH/JH.jpg" alt="" />
+              </button>
+            </li>
+            <li>
+              <button data-name="Jimin" class="pill" aria-label="Jimin">
+                <img src="img/JIMIN/JIMIN.jpg" alt="" />
+              </button>
+            </li>
+            <li>
+              <button data-name="V" class="pill" aria-label="V">
+                <img src="img/V/V.jpg" alt="" />
+              </button>
+            </li>
+            <li>
+              <button data-name="Jungkook" class="pill" aria-label="Jungkook">
+                <img src="img/JK/JK.jpg" alt="" />
+              </button>
+            </li>
+          </ul>
+          <div class="bias-result" id="biasResult" aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="foot">
+        <small>"I Purple You" (Borahae - 보라해) 💜</small><br />
+        <small
+          >Significado de "I Purple You" Esta frase fue acuñada por el miembro V
+          (Kim Taehyung) de BTS, y su significado es mucho más profundo que la
+          simple traducción literal ("Yo te morado"). El color morado (púrpura)
+          es el último color del arcoíris. V explicó que esto significa
+          confiarán y se amarán el uno al otro por mucho tiempo, hasta el
+          final.</small
+        >
+      </footer>
+    </div>
+
+    <!-- Reproductor (oculto) -->
+    <audio id="song" preload="auto" src="assets/audio/clip.mp3"></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
