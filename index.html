@@ -19,12 +19,11 @@
   <body>
     <div class="app">
       <header align="center" class="top">
-        <h1 >Abre las alas <span>💜</span></h1>
+        <h1>Abre el corazón<span>💜</span></h1>
         <p class="tag">
           "Ámate a ti mismo, habla por ti mismo." Love Yourself, Speak Yourself
         </p>
       </header>
-
       <main class="main">
         <!-- Logo BTS ⇄ ARMY (con slots para fotos/videos) -->
         <!-- Logo BTS/ARMY -->
@@ -36,15 +35,28 @@
         >
           <div class="logo-stage">
             <!-- ⬇️ PON AQUÍ UNA SOLA IMAGEN O VIDEO -->
-            <video class="media" src="img/EDITABLE/BTS.mp4" autoplay muted loop playsinline></video>
-            <!-- o
-    <video class="media" src="assets/video/tu-video.mp4" autoplay muted loop playsinline></video>
-    -->
+             <!--img class="media" src="img/MODIFICA/BT21💜.jpg" alt=""> -->
+             <video
+              class="media"
+              src="img/EDITABLE/BTS.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+            <!--video
+              class="media"
+              src="img/EDITABLE/BTS.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video> -->
+            <!-- o <video class="media" src="assets/video/tu-video.mp4" autoplay muted loop playsinline></video> -->
             <!-- Máscara con la silueta del logo BTS (capa morada que se desvanece) -->
             <div class="bts-mask" aria-hidden="true"></div>
           </div>
         </button>
-
         <!-- Mensaje principal oculto -->
         <section id="loveMessage" class="message" hidden>
           <h2>Eres mi <span class="euphoria">Euphoria</span> personal</h2>
@@ -63,10 +75,9 @@
             You. [EDITABLE]💜
           </p>
         </section>
-
         <!-- Mini juego: Who's Your Bias? -->
         <section class="bias-game" aria-labelledby="biasTitle">
-          <h3 id="biasTitle">Quien es tu Bias? 💜</h3>
+          <h3 id="biasTitle">Quien es tu Bias? <span>💜</span> </h3>
           <p class="mini-hint">Toca un miembro y te digo algo bonito.</p>
           <ul class="members" id="members" role="list">
             <!-- Se generan también desde JS por accesibilidad; dejamos fallback estático -->
@@ -109,8 +120,7 @@
           <div class="bias-result" id="biasResult" aria-live="polite"></div>
         </section>
       </main>
-
-      <footer class="foot">
+      <p class="foot">
         <small>"I Purple You" (Borahae - 보라해) 💜</small><br />
         <small
           >Significado de "I Purple You" Esta frase fue acuñada por el miembro V
@@ -120,12 +130,10 @@
           confiarán y se amarán el uno al otro por mucho tiempo, hasta el
           final.</small
         >
-      </footer>
+      </p>
     </div>
-
     <!-- Reproductor (oculto) -->
     <audio id="song" preload="auto" src="assets/audio/clip.mp3"></audio>
-
     <script src="script.js"></script>
   </body>
 </html>
